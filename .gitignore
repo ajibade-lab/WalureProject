@@ -15,6 +15,10 @@ terraform.tfvars
 terraform.tfvars.json
 terraform-provider-azurerm_v3.117.1_x5
 
+**/.terraform/
+*.tfvars
+
+
 ########################################
 # Kubernetes / Helm
 ########################################
