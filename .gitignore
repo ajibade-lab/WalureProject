@@ -13,6 +13,7 @@ override.tf.json
 *_override.tf.json
 terraform.tfvars
 terraform.tfvars.json
+terraform-provider-azurerm_v3.117.1_x5
 
 ########################################
 # Kubernetes / Helm
@@ -98,3 +99,5 @@ yarn-error.log*
 *.old
 *.orig
 *~
+
+minikube-linux-amd64
