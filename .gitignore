@@ -26,6 +26,7 @@ helmfile.d/
 # Binaries & CLI Tools (Never Commit)
 ########################################
 kubectl
+kubectl*
 kubectl.exe
 minikube
 minikube*
@@ -100,4 +101,3 @@ yarn-error.log*
 *.orig
 *~
 
-minikube-linux-amd64
