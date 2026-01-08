@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ajibadeapi
-          image: ajibadeapiacr123.azurecr.io/ajibadeapi:v1
+          image: ajibadeapiacr123.azurecr.io/ajibadeapi:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
