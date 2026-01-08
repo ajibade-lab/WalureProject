@@ -16,4 +16,6 @@ app.MapGet("/health", () => Results.Ok(new
     time = DateTime.UtcNow
 }));
 
+app.Urls.Add("http://0.0.0.0:8080");
+
 app.Run();

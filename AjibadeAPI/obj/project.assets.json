@@ -487,11 +487,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/c/Users/HP/OneDrive/Desktop/Walure Project/WalureProject/MyWebAPI/AjibadeAPI/AjibadeAPI.csproj",
-      "projectName": "AjibadeAPI",
-      "projectPath": "/mnt/c/Users/HP/OneDrive/Desktop/Walure Project/WalureProject/MyWebAPI/AjibadeAPI/AjibadeAPI.csproj",
+      "projectUniqueName": "/mnt/c/Users/HP/OneDrive/Desktop/WalureProject/ajibadeapi/ajibadeapi.csproj",
+      "projectName": "ajibadeapi",
+      "projectPath": "/mnt/c/Users/HP/OneDrive/Desktop/WalureProject/ajibadeapi/ajibadeapi.csproj",
       "packagesPath": "/home/ajibade/.nuget/packages/",
-      "outputPath": "/mnt/c/Users/HP/OneDrive/Desktop/Walure Project/WalureProject/MyWebAPI/AjibadeAPI/obj/",
+      "outputPath": "/mnt/c/Users/HP/OneDrive/Desktop/WalureProject/ajibadeapi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/ajibade/.nuget/NuGet/NuGet.Config"

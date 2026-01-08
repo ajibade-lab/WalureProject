@@ -1,8 +1,8 @@
 {
   "Version": 1,
   "Hash": "XMizIaOrcfKhhLNlgDAOC9QZ7KPG9E1yCk1RAIG6utQ=",
-  "Source": "AjibadeAPI",
-  "BasePath": "_content/AjibadeAPI",
+  "Source": "ajibadeapi",
+  "BasePath": "_content/ajibadeapi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

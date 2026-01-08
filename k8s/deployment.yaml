@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ajibadeapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ajibadeapi
+  template:
+    metadata:
+      labels:
+        app: ajibadeapi
+    spec:
+      containers:
+        - name: ajibadeapi
+          image: ajibadeapiacr123.azurecr.io/ajibadeapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
