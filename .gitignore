@@ -1,0 +1,13 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform.lock.hcl
+
+# Kubernetes / binaries
+minikube*
+kubectl*
+
+# OS / misc
+.DS_Store
