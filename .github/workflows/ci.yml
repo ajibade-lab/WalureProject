@@ -48,11 +48,3 @@ jobs:
       - name: Update manifest image tag
         run: |
           sed -i "s|image: .*|image: ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}|" $MANIFEST_PATH
-
-      - name: Commit & push manifest update
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add $MANIFEST_PATH
-          git commit -m "ci: update image to $IMAGE_TAG"
-          git push
