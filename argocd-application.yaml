@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ajibadeapi
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/ajibade-lab/WalureProject.git
+    targetRevision: main
+    path: manifests/ajibadeapi
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+metadata:
+  name: ajibadeapi
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: ajibadeapi=ajibadeapiacr123.azurecr.io/ajibadeapi
+    argocd-image-updater.argoproj.io/simpleapi.update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: git
