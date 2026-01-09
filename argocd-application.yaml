@@ -19,11 +19,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
-metadata:
-  name: ajibadeapi
-  namespace: argocd
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: ajibadeapi=ajibadeapiacr123.azurecr.io/ajibadeapi
-    argocd-image-updater.argoproj.io/simpleapi.update-strategy: latest
-    argocd-image-updater.argoproj.io/write-back-method: git

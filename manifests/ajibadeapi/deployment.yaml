@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ajibadeapi
+  namespace: default
 spec:
   replicas: 2
   selector:
@@ -14,7 +15,6 @@ spec:
     spec:
       containers:
         - name: ajibadeapi
-          image: ajibadeapiacr123.azurecr.io/ajibadeapi:latest
+          image: ajibadeapiacr123.azurecr.io/ajibadeapi:PLACEHOLDER
           ports:
             - containerPort: 8080
-
