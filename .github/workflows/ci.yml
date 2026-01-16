@@ -48,3 +48,5 @@ jobs:
       - name: Update manifest image tag
         run: |
           sed -i "s|image: .*|image: ${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}|" $MANIFEST_PATH
+
+
