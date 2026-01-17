@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: ajibadeapi
-          image: ajibadeapiacr123.azurecr.io/ajibadeapi:PLACEHOLDER
+          image: ajibadeapi:latest
           ports:
             - containerPort: 8080
