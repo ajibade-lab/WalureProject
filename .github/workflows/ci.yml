@@ -38,7 +38,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build \
-            -t $DOCKERHUB_REPO:$IMAGE_TAG .\
+            -t $DOCKERHUB_REPO:$IMAGE_TAG \
             ajibadeapi
 
           docker push $DOCKERHUB_REPO:$IMAGE_TAG
