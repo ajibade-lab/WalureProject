@@ -1,4 +1,3 @@
-# WalureProject
 # 🚀 Walure Cloud-Native DevOps Project — Push-to-Deploy Architecture
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/ajibade-lab/WalureProject/ci.yml?style=for-the-badge)](#)
@@ -12,27 +11,39 @@
 
 ## 📚 Academic Project Information
 
-| Role | Name |
-|--------|------|
-| **Student** | **Apata Sulaimon Ajibade** |
-| **Project Tutor** | **Prolific Lexzy** |
-| **Institution** | **Walure Academy** |
+| Role              | Details                    |
+| ----------------- | -------------------------- |
+| **Student Name**  | **Apata Sulaimon Ajibade** |
+| **Project Tutor** | **Prolific Lexzy**         |
+| **Institution**   | **Walure Academy**         |
 
 ---
 
-## 🌐 Live Application Access
+## 🌍 Live Application Access
 
-**Application URL:**  
-http://<YOUR-CLUSTER-IP>:<NODE-PORT>
+**Application URL:**
 
+```
+http://<MINIKUBE-IP>:<NODE-PORT>
+```
 
-> ⚠️ Replace this with your **public LoadBalancer / Ingress URL** once deployed to production.
+Example:
+
+```
+http://192.168.49.2:30121
+```
+
+> ⚠️ The IP and port will be generated automatically by Minikube using:
+
+```bash
+minikube service ajibadeapi --url
+```
 
 ---
 
 ## 🧠 Project Overview
 
-This project implements a **complete enterprise-grade DevOps workflow** using modern cloud-native technologies.
+This project implements a **real‑world DevOps pipeline** using modern **cloud‑native and GitOps principles**. The system automates the full lifecycle of application deployment — from **code commit to production release**.
 
 ### 🎯 Key Objectives:
 - Build a scalable **.NET API**
@@ -45,34 +56,35 @@ This project implements a **complete enterprise-grade DevOps workflow** using mo
 
 ---
 
-## 🏗 Architecture Diagram
+## 🏗 System Architecture
 
-Developer → GitHub → GitHub Actions → Docker Hub / ACR
-↓
-Kubernetes Cluster
-↓
-ArgoCD (GitOps)
-↓
-Live Application
-↓
-Prometheus → Grafana
-
+```
+Developer → GitHub → GitHub Actions → Docker Hub
+                                ↓
+                            Kubernetes
+                                ↓
+                          Argo CD (GitOps)
+                                ↓
+                         Live Application
+                                ↓
+                     Prometheus → Grafana
+```
 
 ---
 
 ## 🔧 Technology Stack
 
-| Layer | Tools |
-|--------|-------|
-| Backend API | ASP.NET Core |
-| Containerization | Docker |
-| Infrastructure | Terraform |
-| CI/CD | GitHub Actions |
-| Container Registry | Docker Hub / Azure ACR |
-| Orchestration | Kubernetes |
-| GitOps | Argo CD |
-| Monitoring | Prometheus & Grafana |
-| Cloud | Microsoft Azure |
+| **Layer**          | **Tools**                   |
+| ------------------ | --------------------------- |
+| Backend API        | ASP.NET Core (.NET)         |
+| Containerization   | Docker                      |
+| Infrastrusture     | Terraform                   |
+| CI/CD              | GitHub Actions              |
+| Container Registry | Docker Hub                  |
+| Orchestration      | Kubernetes (Minikube / AKS) |
+| GitOps CD          | Argo CD                     |
+| Monitoring         | Prometheus + Grafana        |
+| Cloud Platform     | Microsoft Azure (Optional)  |
 
 ---
 
@@ -82,13 +94,16 @@ Prometheus → Grafana
 Developers push code to GitHub.
 
 ### 🔹 Step 2 — CI Pipeline (GitHub Actions)
+GitHub Actions automatically:
 - Build Docker Image
 - Push image to Docker Hub / Azure ACR
 - Automatically update Kubernetes manifests
 
 ### 🔹 Step 3 — GitOps Deployment (ArgoCD)
-- ArgoCD watches `manifests/`
-- Auto-syncs new deployments to Kubernetes
+Argo CD monitors the `manifests/` directory and automatically:
+- Syncs new changes 
+- Deploys updates to Kubernetes
+- Ensures desired state is always maintained
 
 ### 🔹 Step 4 — Monitoring
 - Prometheus scrapes metrics
@@ -98,114 +113,169 @@ Developers push code to GitHub.
 
 ## 🚀 How To Use The Application
 
-### 1️⃣ Access the API
+### Get Service URL
 
-Open your browser and navigate to:
+```bash
+minikube service ajibadeapi-service
+```
+
+### 🔹Access Swagger API Interface
+
+```
 http://<APP_URL>/swagger
+```
 
+Swagger provides:
 
-This opens **Swagger UI**, where you can:
-- View endpoints
-- Test API calls
-- Send HTTP requests directly
+* API documentation
+* Interactive testing interface
+* Request/response previews
 
 ---
 
-### 2️⃣ Sample API Request
+### 🔹Sample API Test
 
 ```bash
 curl http://<APP_URL>/api/health
+```
 
-Expected Response:
+Expected Output:
 
+```json
 {
   "status": "Healthy",
-  "service": "Ajibade API"
+  "service": "ajibadeapi"
 }
+```
 
-Open Grafana dashboard:
+---
 
+## 🛠 Local Development Setup
+
+### Prerequisites
+
+```bash
+Docker
+Minikube / AKS
+Terraform
+kubectl
+Git
+```
+
+---
+
+### Clone Repository
+
+```bash
+git clone https://github.com/ajibade-lab/WalureProject.git
+cd WalureProject
+```
+
+---
+
+### Build Docker Image
+
+```bash
+docker build -t ajibadeapi:latest
+```
+
+---
+
+### Deploy to Kubernetes
+
+```bash
+kubectl apply -f manifests/ajibadeapi
+```
+
+---
+
+## 📊 Monitoring Setup
+
+```bash
+kubectl create namespace monitoring
+helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring
+```
+
+Access Grafana:
+
+```bash
+kubectl port-forward svc/prometheus-grafana -n monitoring 3000:80
+```
+
+Open:
+
+```
 http://<GRAFANA_URL>:3000
-
+```
 
 Login:
 
+```
 Username: admin
 Password: admin
-
+```
 
 View:
 
+```
 CPU usage
-
 Memory utilization
-
 API response time
-
 Pod health
+```
 
-Prerequisites
-Docker
-Kubectl
-Terraform
-Minikube / AKS
-Git
 
-Clone Repository
-git clone https://github.com/ajibade-lab/WalureProject.git
-cd WalureProject
+---
 
-Build Docker Image
-docker build -t ajibadeapi .
+## 🔐 Security Practices
 
-Deploy to Kubernetes
-kubectl apply -f manifests/
+* Secrets managed using GitHub Secrets
+* Token‑based Docker authentication
+* Secure CI/CD isolation
+* Kubernetes RBAC access control
 
-📊 Monitoring Stack Installation
-kubectl create namespace monitoring
-helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring
+---
 
-🔐 CI/CD Security Design
-
-GitHub Secrets for credentials
-
-Docker registry authentication tokens
-
-Secure pipeline isolation
-
-Role-based Kubernetes access
-
-🎓 Learning Outcomes
+## 🎓 Learning Outcomes
 
 This project demonstrates mastery of:
 
-✅ Cloud Infrastructure Engineering
-✅ Kubernetes Orchestration
-✅ GitOps Workflow
-✅ DevOps Automation
-✅ Monitoring & Observability
-✅ Enterprise CI/CD Pipelines
+* Cloud‑native DevOps engineering
+* CI/CD automation
+* Kubernetes orchestration
+* GitOps deployment workflows
+* Observability & monitoring
+* Infrastructure‑as‑Code principles
 
-🏆 Academic Purpose
+---
 
-This project was developed as part of Walure Academy's advanced DevOps engineering program under the mentorship of Prolific Lexzy, showcasing real-world industry deployment patterns.
+## 🏆 Academic Context
 
-👨‍💻 Author
+This project was developed at **Walure Academy** under the mentorship of **Prolific Lexzy** as a **professional DevOps engineering capstone project**.
 
-Apata Sulaimon Ajibade
-DevOps Engineer | Cloud Engineer | Kubernetes Specialist
+It demonstrates **production‑grade system design, automation, and deployment strategies** used in modern cloud organizations.
 
-📜 License
+---
 
-This project is licensed for educational and academic use only.
+## 👨‍💻 Author
 
-⭐ Project Status
+**Apata Sulaimon Ajibade**
+Cloud & DevOps Engineer
+
+---
+
+## ⭐ Project Status
+
+```
 🟢 PRODUCTION READY
+```
 
-🤝 Acknowledgements
+---
 
-Special thanks to:
+## 📜 License
 
-🎓 Walure Academy
-🧠 Prolific Lexzy
-🌍 Open Source Community
+This project is licensed for **academic, educational, and research purposes only**.
+
+---
+
+> "Automation is the heart of DevOps excellence." 🚀
