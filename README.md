@@ -36,7 +36,7 @@ http://192.168.49.2:30121
 > ⚠️ The IP and port will be generated automatically by Minikube using:
 
 ```bash
-minikube service ajibadeapi --url
+minikube service ajibadeapi-service
 ```
 
 ---
@@ -260,6 +260,7 @@ It demonstrates **production‑grade system design, automation, and deployment s
 ## 👨‍💻 Author
 
 **Apata Sulaimon Ajibade**
+
 Cloud & DevOps Engineer
 
 ---
