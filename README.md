@@ -65,9 +65,9 @@ Developer → GitHub → GitHub Actions → Docker Hub
                                 ↓
                           Argo CD (GitOps)
                                 ↓
-                         Live Application
+                          Live Application
                                 ↓
-                     Prometheus → Grafana
+                        Prometheus → Grafana
 ```
 
 ---
@@ -122,7 +122,7 @@ minikube service ajibadeapi-service
 ### 🔹Access Swagger API Interface
 
 ```
-http://<APP_URL>/swagger
+curl http://<APP_URL>/swagger
 ```
 
 Swagger provides:
