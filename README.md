@@ -279,4 +279,13 @@ This project is licensed for **academic, educational, and research purposes only
 
 ---
 
+## 📽 Project Presentation Slides (PowerPoint)
+
+Download the full technical presentation of this project:
+
+> 🎯 **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
+
+---
+
+
 > "Automation is the heart of DevOps excellence." 🚀
