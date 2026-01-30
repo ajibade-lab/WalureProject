@@ -17,6 +17,8 @@
 | **Project Tutor** | **Prolific Lexzy**         |
 | **Institution**   | **Walure Academy**         |
 
+ 📽 **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
+
 ---
 
 ## 🌍 Live Application Access
