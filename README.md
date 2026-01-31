@@ -17,7 +17,7 @@
 | **Project Tutor** | **Ifeanyi**         |
 | **Institution**   | **Walure Academy**         |
 
- 📽 Download the full technical presentation of this project: **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
+ Download the full technical presentation of this project: **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
 
 ---
 
@@ -263,7 +263,7 @@ Example:
 http://192.168.49.2:30121
 ```
 
-> ⚠️ The IP and port will be generated automatically by Minikube using:
+> The IP and port will be generated automatically by Minikube using:
 
 ```bash
 minikube service ajibadeapi-service
@@ -306,4 +306,4 @@ This project is licensed for **academic, educational, and research purposes only
 
 ---
 
-> "Automation is the heart of DevOps excellence." 🚀
+> "Automation is the heart of DevOps excellence." 
