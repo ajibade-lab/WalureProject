@@ -13,33 +13,11 @@
 
 | Role              | Details                    |
 | ----------------- | -------------------------- |
-| **Student Name**  | **Apata Sulaimon Ajibade** |
+| **Student Name**  | **Ajibade Apata**          |
 | **Project Tutor** | **Prolific Lexzy**         |
 | **Institution**   | **Walure Academy**         |
 
  📽 Download the full technical presentation of this project: **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
-
----
-
-## 🌍 Live Application Access
-
-**Application URL:**
-
-```
-http://<MINIKUBE-IP>:<NODE-PORT>
-```
-
-Example:
-
-```
-http://192.168.49.2:30121
-```
-
-> ⚠️ The IP and port will be generated automatically by Minikube using:
-
-```bash
-minikube service ajibadeapi-service
-```
 
 ---
 
@@ -131,7 +109,7 @@ All cloud resources are provisioned using **Terraform**, ensuring repeatable, ve
 
 * Resource Group
 * Azure Kubernetes Service (AKS)
-* Azure Container Registry (ACR)
+* Azure Container Registry (ACR) / DockerHub
 * Role assignment (`AcrPull`) between AKS and ACR
 
 ### Key Terraform Commands
@@ -270,6 +248,29 @@ helm install grafana grafana/grafana -n monitoring
 ```
 
 ---
+
+## 🌍 Live Application Access
+
+**Application URL:**
+
+```
+http://<MINIKUBE-IP>:<NODE-PORT>
+```
+
+Example:
+
+```
+http://192.168.49.2:30121
+```
+
+> ⚠️ The IP and port will be generated automatically by Minikube using:
+
+```bash
+minikube service ajibadeapi-service
+```
+
+---
+
 
 ## ✅ DevOps Best Practices Implemented
 
