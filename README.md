@@ -17,7 +17,7 @@
 | **Project Tutor** | **Prolific Lexzy**         |
 | **Institution**   | **Walure Academy**         |
 
- 📽 **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
+ 📽 Download the full technical presentation of this project: **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
 
 ---
 
@@ -45,16 +45,24 @@ minikube service ajibadeapi-service
 
 ## 🧠 Project Overview
 
-This project implements a **real‑world DevOps pipeline** using modern **cloud‑native and GitOps principles**. The system automates the full lifecycle of application deployment — from **code commit to production release**.
+This project demonstrates a **production‑grade, cloud‑native DevOps pipeline** implemented on **Microsoft Azure**, following modern **CI/CD and GitOps best practices**. The objective of the project is to design, build, deploy, and monitor a containerized **ASP.NET Core Web API** using a fully automated workflow — from source code commit to deployment and observability in Kubernetes.
 
-### 🎯 Key Objectives:
-- Build a scalable **.NET API**
-- Containerize using **Docker**
-- Provision infrastructure using **Terraform**
-- Deploy to **Kubernetes (AKS / Minikube)**
-- Implement **CI/CD pipelines with GitHub Actions**
-- Enable **GitOps deployment using ArgoCD**
-- Add **Monitoring with Prometheus & Grafana**
+The solution integrates **Infrastructure as Code (IaC)**, **Continuous Integration (CI)**, **Continuous Deployment (CD)**, **GitOps**, and **Observability** into a single cohesive system that mirrors real‑world enterprise DevOps environments.
+
+
+## 🧱 Architecture Summary
+
+The architecture follows a **Push‑to‑Deploy GitOps model**:
+
+1. **Developer** pushes code to GitHub
+2. **GitHub Actions (CI)** builds and containerizes the application
+3. Docker image is pushed to **Azure Container Registry (ACR)**
+4. **Argo CD** continuously watches Kubernetes manifests stored in GitHub
+5. **Azure Kubernetes Service (AKS)** pulls the image and deploys the application
+6. **Prometheus** collects metrics from the application and cluster
+7. **Grafana** visualizes metrics for monitoring and observability
+
+GitHub acts as the **single source of truth** for both application code and Kubernetes configuration.
 
 ---
 
@@ -74,180 +82,212 @@ Developer → GitHub → GitHub Actions → Docker Hub
 
 ---
 
-## 🔧 Technology Stack
+## 🧑‍💻 Application Layer
 
-| **Layer**          | **Tools**                   |
-| ------------------ | --------------------------- |
-| Backend API        | ASP.NET Core (.NET)         |
-| Containerization   | Docker                      |
-| Infrastrusture     | Terraform                   |
-| CI/CD              | GitHub Actions              |
-| Container Registry | Docker Hub                  |
-| Orchestration      | Kubernetes (Minikube / AKS) |
-| GitOps CD          | Argo CD                     |
-| Monitoring         | Prometheus + Grafana        |
-| Cloud Platform     | Microsoft Azure (Optional)  |
+### Technology Stack
 
----
+* **ASP.NET Core Web API (.NET 8)**
+* **Docker** for containerization
+* Stateless REST API design
 
-## ⚙️ How It Works (DevOps Workflow)
+### Application Features
 
-### 🔹 Step 1 — Code Commit
-Developers push code to GitHub.
+* Root endpoint (`/`) for service verification
+* Health endpoint (`/health`) for Kubernetes probes
+* Metrics endpoint (`/metrics`) for Prometheus scraping
 
-### 🔹 Step 2 — CI Pipeline (GitHub Actions)
-GitHub Actions automatically:
-- Build Docker Image
-- Push image to Docker Hub / Azure ACR
-- Automatically update Kubernetes manifests
-
-### 🔹 Step 3 — GitOps Deployment (ArgoCD)
-Argo CD monitors the `manifests/` directory and automatically:
-- Syncs new changes 
-- Deploys updates to Kubernetes
-- Ensures desired state is always maintained
-
-### 🔹 Step 4 — Monitoring
-- Prometheus scrapes metrics
-- Grafana visualizes performance dashboards
-
----
-
-## 🚀 How To Use The Application
-
-### Get Service URL
+### Key Command (Create App)
 
 ```bash
-minikube service ajibadeapi-service
+dotnet new webapi -n ajibadeapi
 ```
-
-### 🔹Access Swagger API Interface
-
-```
-curl http://<APP_URL>/swagger
-```
-
-Swagger provides:
-
-* API documentation
-* Interactive testing interface
-* Request/response previews
 
 ---
 
-### 🔹Sample API Test
+## 🐳 Containerization with Docker
+
+The application is packaged using a **multi‑stage Docker build**, ensuring a lightweight and secure runtime image.
+
+### Key Benefits
+
+* Smaller image size
+* Faster deployments
+* Clear separation between build and runtime environments
+
+### Key Commands
 
 ```bash
-curl http://<APP_URL>/api/health
-```
-
-Expected Output:
-
-```json
-{
-  "status": "Healthy",
-  "service": "ajibadeapi"
-}
+docker build -t ajibadeapi:latest .
+docker run -p 8080:8080 ajibadeapi:latest
 ```
 
 ---
 
-## 🛠 Local Development Setup
+## 🏗️ Infrastructure as Code (Terraform)
 
-### Prerequisites
+All cloud resources are provisioned using **Terraform**, ensuring repeatable, version‑controlled infrastructure.
+
+### Azure Resources Provisioned
+
+* Resource Group
+* Azure Kubernetes Service (AKS)
+* Azure Container Registry (ACR)
+* Role assignment (`AcrPull`) between AKS and ACR
+
+### Key Terraform Commands
 
 ```bash
-Docker
-Minikube / AKS
-Terraform
-kubectl
-Git
+terraform init
+terraform plan
+terraform apply
 ```
+
+### Benefits
+
+* No manual cloud setup
+* Infrastructure consistency
+* Easy teardown and recreation
 
 ---
 
-### Clone Repository
+## 🔁 Continuous Integration (GitHub Actions)
+
+GitHub Actions is used to automate the **build and containerization process**.
+
+### CI Pipeline Responsibilities
+
+* Triggered on every push to `main`
+* Builds the .NET application
+* Builds Docker image
+* Pushes image to Azure Container Registry
+
+### Key Git Commands
 
 ```bash
-git clone https://github.com/ajibade-lab/WalureProject.git
-cd WalureProject
+git add .
+git commit -m "Trigger CI pipeline"
+git push origin main
 ```
+
+This guarantees that every code change produces a new container image automatically.
 
 ---
 
-### Build Docker Image
+## 🚀 Container Registry (ACR)
+
+Azure Container Registry stores versioned Docker images securely and acts as the deployment source for AKS.
+
+### Key Commands
 
 ```bash
-docker build -t ajibadeapi:latest
+az acr login --name <acr-name>
+docker push <acr-login-server>/ajibadeapi:latest
 ```
+
+AKS is granted permission to pull images using Azure role‑based access control (RBAC).
 
 ---
 
-### Deploy to Kubernetes
+## 🔄 Continuous Deployment with GitOps (Argo CD)
+
+### GitOps Model
+
+* Kubernetes manifests are stored in GitHub
+* Git is the single source of truth
+* Argo CD continuously reconciles cluster state
+
+### Argo CD Responsibilities
+
+* Watches the GitHub repository
+* Deploys and updates Kubernetes manifests
+* Automatically self‑heals configuration drift
+
+### Key Commands
 
 ```bash
-kubectl apply -f manifests/ajibadeapi
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
 ---
 
-## 📊 Monitoring Setup
+## 🔁 Automatic Image Updates
+
+To eliminate manual image version updates, **Argo CD Image Updater** is integrated.
+
+### How It Works
+
+* Detects new images in ACR
+* Updates Kubernetes manifests in GitHub
+* Triggers automatic redeployment
+
+### Benefits
+
+* Zero manual intervention
+* True continuous delivery
+* Strong GitOps compliance
+
+---
+
+## ☸️ Kubernetes Deployment
+
+The application is deployed to AKS using declarative YAML manifests.
+
+### Kubernetes Objects Used
+
+* Deployment
+* Service (NodePort)
+
+### Key Commands
 
 ```bash
-kubectl create namespace monitoring
-helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring
+kubectl apply -f manifests/
+kubectl get pods
+kubectl get svc
 ```
 
-Access Grafana:
+The service exposes the application publicly using an Azure LoadBalancer.
+
+---
+
+## 📊 Observability (Prometheus & Grafana)
+
+### Prometheus
+
+* Scrapes metrics from the application and cluster
+* Collects CPU, memory, request, and latency metrics
+
+### Grafana
+
+* Visualizes metrics via dashboards
+* Enables real‑time monitoring and performance analysis
+
+### Key Commands
 
 ```bash
-kubectl port-forward svc/prometheus-grafana -n monitoring 3000:80
+helm install prometheus prometheus-community/prometheus -n monitoring
+helm install grafana grafana/grafana -n monitoring
 ```
-
-Open:
-
-```
-http://<GRAFANA_URL>:3000
-```
-
-Login:
-
-```
-Username: admin
-Password: admin
-```
-
-View:
-
-```
-CPU usage
-Memory utilization
-API response time
-Pod health
-```
-
 
 ---
 
-## 🔐 Security Practices
+## ✅ DevOps Best Practices Implemented
 
-* Secrets managed using GitHub Secrets
-* Token‑based Docker authentication
-* Secure CI/CD isolation
-* Kubernetes RBAC access control
+* Infrastructure as Code (Terraform)
+* CI automation with GitHub Actions
+* GitOps‑based CD using Argo CD
+* Containerization with Docker
+* Kubernetes orchestration with AKS
+* Automated image updates
+* Full observability and monitoring
 
 ---
 
-## 🎓 Learning Outcomes
+## 🎯 Conclusion
 
-This project demonstrates mastery of:
+This project successfully demonstrates an **end‑to‑end DevOps lifecycle** using modern cloud‑native tools. It highlights how automation, GitOps, and observability work together to create a scalable, reliable, and production‑ready deployment pipeline.
 
-* Cloud‑native DevOps engineering
-* CI/CD automation
-* Kubernetes orchestration
-* GitOps deployment workflows
-* Observability & monitoring
-* Infrastructure‑as‑Code principles
+The architecture and tooling used in this project align closely with **real‑world enterprise DevOps practices**, making it a strong reference implementation for modern cloud deployments.
 
 ---
 
@@ -259,35 +299,10 @@ It demonstrates **production‑grade system design, automation, and deployment s
 
 ---
 
-## 👨‍💻 Author
-
-**Apata Sulaimon Ajibade**
-
-Cloud & DevOps Engineer
-
----
-
-## ⭐ Project Status
-
-```
-🟢 PRODUCTION READY
-```
-
----
-
 ## 📜 License
 
 This project is licensed for **academic, educational, and research purposes only**.
 
 ---
-
-## 📽 Project Presentation Slides (PowerPoint)
-
-Download the full technical presentation of this project:
-
-> 🎯 **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
-
----
-
 
 > "Automation is the heart of DevOps excellence." 🚀
