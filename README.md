@@ -294,7 +294,7 @@ The architecture and tooling used in this project align closely with **real‑wo
 
 ## Academic Context
 
-This project was developed at **Walure Academy** under the mentorship of **Prolific Lexzy** as a **professional DevOps engineering capstone project**.
+This project was developed at **Walure Academy** under the mentorship of **Ifeanyi** as a **professional DevOps engineering capstone project**.
 
 It demonstrates **production‑grade system design, automation, and deployment strategies** used in modern cloud organizations.
 
