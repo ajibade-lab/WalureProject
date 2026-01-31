@@ -44,7 +44,7 @@ GitHub acts as the **single source of truth** for both application code and Kube
 
 ---
 
-## System Architecture
+## Project Architecture
 
 ```
 Developer → GitHub → GitHub Actions → Docker Hub
@@ -78,6 +78,7 @@ Developer → GitHub → GitHub Actions → Docker Hub
 
 ```bash
 dotnet new webapi -n ajibadeapi
+dotnet run
 ```
 
 ---
