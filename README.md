@@ -1,4 +1,4 @@
-# 🚀 Walure Cloud-Native DevOps Project — Push-to-Deploy Architecture
+# Walure Cloud-Native DevOps Project — Push-to-Deploy Architecture
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/ajibade-lab/WalureProject/ci.yml?style=for-the-badge)](#)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue?style=for-the-badge&logo=docker)](#)
@@ -9,26 +9,26 @@
 
 ---
 
-## 📚 Academic Project Information
+## Academic Project Information
 
 | Role              | Details                    |
 | ----------------- | -------------------------- |
 | **Student Name**  | **Ajibade Apata**          |
-| **Project Tutor** | **Prolific Lexzy**         |
+| **Project Tutor** | **Ifeanyi**         |
 | **Institution**   | **Walure Academy**         |
 
  📽 Download the full technical presentation of this project: **[Download Project Slides (.pptx)](docs/Ajibade_DevOps_Project.pptx)**
 
 ---
 
-## 🧠 Project Overview
+## Project Overview
 
 This project demonstrates a **production‑grade, cloud‑native DevOps pipeline** implemented on **Microsoft Azure**, following modern **CI/CD and GitOps best practices**. The objective of the project is to design, build, deploy, and monitor a containerized **ASP.NET Core Web API** using a fully automated workflow — from source code commit to deployment and observability in Kubernetes.
 
 The solution integrates **Infrastructure as Code (IaC)**, **Continuous Integration (CI)**, **Continuous Deployment (CD)**, **GitOps**, and **Observability** into a single cohesive system that mirrors real‑world enterprise DevOps environments.
 
 
-## 🧱 Architecture Summary
+## Architecture Summary
 
 The architecture follows a **Push‑to‑Deploy GitOps model**:
 
@@ -44,7 +44,7 @@ GitHub acts as the **single source of truth** for both application code and Kube
 
 ---
 
-## 🏗 System Architecture
+## System Architecture
 
 ```
 Developer → GitHub → GitHub Actions → Docker Hub
@@ -60,7 +60,7 @@ Developer → GitHub → GitHub Actions → Docker Hub
 
 ---
 
-## 🧑‍💻 Application Layer
+##  Application Layer
 
 ### Technology Stack
 
@@ -82,7 +82,7 @@ dotnet new webapi -n ajibadeapi
 
 ---
 
-## 🐳 Containerization with Docker
+## Containerization with Docker
 
 The application is packaged using a **multi‑stage Docker build**, ensuring a lightweight and secure runtime image.
 
@@ -101,7 +101,7 @@ docker run -p 8080:8080 ajibadeapi:latest
 
 ---
 
-## 🏗️ Infrastructure as Code (Terraform)
+## Infrastructure as Code (Terraform)
 
 All cloud resources are provisioned using **Terraform**, ensuring repeatable, version‑controlled infrastructure.
 
@@ -128,7 +128,7 @@ terraform apply
 
 ---
 
-## 🔁 Continuous Integration (GitHub Actions)
+## Continuous Integration (GitHub Actions)
 
 GitHub Actions is used to automate the **build and containerization process**.
 
@@ -151,7 +151,7 @@ This guarantees that every code change produces a new container image automatica
 
 ---
 
-## 🚀 Container Registry (ACR)
+## Container Registry (ACR)
 
 Azure Container Registry stores versioned Docker images securely and acts as the deployment source for AKS.
 
@@ -166,7 +166,7 @@ AKS is granted permission to pull images using Azure role‑based access control
 
 ---
 
-## 🔄 Continuous Deployment with GitOps (Argo CD)
+## Continuous Deployment with GitOps (Argo CD)
 
 ### GitOps Model
 
@@ -189,7 +189,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ---
 
-## 🔁 Automatic Image Updates
+## Automatic Image Updates
 
 To eliminate manual image version updates, **Argo CD Image Updater** is integrated.
 
@@ -207,7 +207,7 @@ To eliminate manual image version updates, **Argo CD Image Updater** is integrat
 
 ---
 
-## ☸️ Kubernetes Deployment
+## Kubernetes Deployment
 
 The application is deployed to AKS using declarative YAML manifests.
 
@@ -228,7 +228,7 @@ The service exposes the application publicly using Node-Port.
 
 ---
 
-## 📊 Observability (Prometheus & Grafana)
+## Observability (Prometheus & Grafana)
 
 ### Prometheus
 
@@ -249,7 +249,7 @@ helm install grafana grafana/grafana -n monitoring
 
 ---
 
-## 🌍 Live Application Access
+## Live Application Access
 
 **Application URL:**
 
@@ -272,7 +272,7 @@ minikube service ajibadeapi-service
 ---
 
 
-## ✅ DevOps Best Practices Implemented
+## DevOps Best Practices Implemented
 
 * Infrastructure as Code (Terraform)
 * CI automation with GitHub Actions
@@ -284,7 +284,7 @@ minikube service ajibadeapi-service
 
 ---
 
-## 🎯 Conclusion
+## Conclusion
 
 This project successfully demonstrates an **end‑to‑end DevOps lifecycle** using modern cloud‑native tools. It highlights how automation, GitOps, and observability work together to create a scalable, reliable, and production‑ready deployment pipeline.
 
@@ -292,7 +292,7 @@ The architecture and tooling used in this project align closely with **real‑wo
 
 ---
 
-## 🏆 Academic Context
+## Academic Context
 
 This project was developed at **Walure Academy** under the mentorship of **Prolific Lexzy** as a **professional DevOps engineering capstone project**.
 
@@ -300,7 +300,7 @@ It demonstrates **production‑grade system design, automation, and deployment s
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed for **academic, educational, and research purposes only**.
 
