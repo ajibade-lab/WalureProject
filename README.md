@@ -34,7 +34,7 @@ The architecture follows a **Push‑to‑Deploy GitOps model**:
 
 1. **Developer** pushes code to GitHub
 2. **GitHub Actions (CI)** builds and containerizes the application
-3. Docker image is pushed to **Azure Container Registry (ACR)**
+3. Docker image is pushed to **Azure Container Registry (ACR) / DockerHub**
 4. **Argo CD** continuously watches Kubernetes manifests stored in GitHub
 5. **Azure Kubernetes Service (AKS)** pulls the image and deploys the application
 6. **Prometheus** collects metrics from the application and cluster
@@ -224,7 +224,7 @@ kubectl get pods
 kubectl get svc
 ```
 
-The service exposes the application publicly using an Azure LoadBalancer.
+The service exposes the application publicly using Node-Port.
 
 ---
 
